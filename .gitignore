@@ -1,10 +1,10 @@
 HELP.md
 .gradle
+gradle/
 gradlew
 gradlew.*
 settings.gradle
 build/
-!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
