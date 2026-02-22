@@ -1,19 +1,28 @@
 package net.study.tdd.template;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Template {
 
-    private String variable;
+    private Map<String, String> variables;
     private String templateText;
 
     public Template(String templateText) {
+        this.variables = new HashMap<>();
         this.templateText = templateText;
     }
 
-    public void set(String variable, String value) {
-        this.variable = value;
+    public void set(String name, String value) {
+        this.variables.put(name, value);
     }
 
     public String evaluate() {
-        return templateText.replaceAll("\\$\\{name\\}", variable);
+        String result = templateText;
+        for (Map.Entry<String, String> entry : variables.entrySet()) {
+            String regex = "\\$\\{" + entry.getKey() + "\\}";
+            result = result.replaceAll(regex, entry.getValue());
+        }
+        return result;
     }
 }
