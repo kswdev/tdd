@@ -26,8 +26,10 @@ class TestTemplateSpec extends Specification {
 
     def unknownVariablesAreIgnored() {
 
-        when:
+        given:
         template.set("doesnotexist", "whatever")
+
+        when:
         def result = template.evaluate()
 
         then:
@@ -46,5 +48,19 @@ class TestTemplateSpec extends Specification {
         then:
         def e = thrown(MissingValueException.class)
         e.getMessage() == 'No value for ${foo}'
+    }
+
+    def variablesGetProcessedJustOnce() throws Exception {
+
+        given:
+        template.set("one", '${one}');
+        template.set("two", '${three}');
+        template.set("three", '${two}');
+
+        when:
+        def result = template.evaluate()
+
+        then:
+        result == '${one}, ${three}, ${two}'
     }
 }
