@@ -1,6 +1,7 @@
 package net.study.tdd
 
 import net.study.tdd.template.Template
+import net.study.tdd.template.error.MissingValueException
 import spock.lang.Specification
 
 class TestTemplateSpec extends Specification {
@@ -31,5 +32,13 @@ class TestTemplateSpec extends Specification {
 
         then:
         result == "1, 2, 3"
+    }
+
+    def missingValueRaisesException() {
+        when:
+        new Template('${foo}').evaluate()
+
+        then:
+        thrown(MissingValueException.class)
     }
 }
