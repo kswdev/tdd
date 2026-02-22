@@ -35,10 +35,16 @@ class TestTemplateSpec extends Specification {
     }
 
     def missingValueRaisesException() {
+
+        given:
+        def template = new Template('${foo}')
+        template.set("one", "1")
+
         when:
-        new Template('${foo}').evaluate()
+        template.evaluate()
 
         then:
-        thrown(MissingValueException.class)
+        def e = thrown(MissingValueException.class)
+        e.getMessage() == 'No value for ${foo}'
     }
 }
