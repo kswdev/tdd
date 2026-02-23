@@ -34,8 +34,4 @@ public class Template {
         }
         return result.toString();
     }
-
-    public static boolean isVariable(String segment) {
-        return segment.startsWith("${") && segment.endsWith("}");
-    }
 }

@@ -1,6 +1,5 @@
 package net.study.tdd.template.parse;
 
-import net.study.tdd.template.Template;
 import net.study.tdd.template.segment.PlainText;
 import net.study.tdd.template.segment.Segment;
 import net.study.tdd.template.segment.Variable;
@@ -25,7 +24,7 @@ public class TemplateParse {
         List<String> strings = parse(template);
 
         for (String s : strings) {
-            if (Template.isVariable(s)) {
+            if (isVariable(s)) {
                 String name = s.substring(2, s.length() - 1);
                 segments.add(new Variable(name));
             } else {
@@ -63,9 +62,14 @@ public class TemplateParse {
             segments.add(src.substring(index, m.start()));
         }
     }
+
     private void addEmptyStringIfTemplateWasEmpty(List<String> segments) {
         if (segments.isEmpty()) {
             segments.add("");
         }
+    }
+
+    private boolean isVariable(String segment) {
+        return segment.startsWith("${") && segment.endsWith("}");
     }
 }
