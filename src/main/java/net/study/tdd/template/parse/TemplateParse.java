@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class TemplateParse {
 
-    public List<String> parse(String template) {
+    private List<String> parse(String template) {
         List<String> segments = new ArrayList<>();
         int index = collectSegments(segments, template);
         addTail(segments, template, index);
