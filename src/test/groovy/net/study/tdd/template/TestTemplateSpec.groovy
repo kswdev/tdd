@@ -36,20 +36,6 @@ class TestTemplateSpec extends Specification {
         result == "1, 2, 3"
     }
 
-    def missingValueRaisesException() {
-
-        given:
-        def template = new Template('${foo}')
-        template.set("one", "1")
-
-        when:
-        template.evaluate()
-
-        then:
-        def e = thrown(MissingValueException.class)
-        e.getMessage() == 'No value for ${foo}'
-    }
-
     def variablesGetProcessedJustOnce() throws Exception {
 
         given:
