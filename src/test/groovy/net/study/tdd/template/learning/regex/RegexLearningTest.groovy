@@ -1,4 +1,4 @@
-package net.study.tdd.learning.regex;
+package net.study.tdd.template.learning.regex;
 
 import spock.lang.Specification
 
