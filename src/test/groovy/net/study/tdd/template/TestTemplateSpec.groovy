@@ -1,7 +1,6 @@
 package net.study.tdd.template
 
 
-import net.study.tdd.template.error.MissingValueException
 import spock.lang.Specification
 
 class TestTemplateSpec extends Specification {
