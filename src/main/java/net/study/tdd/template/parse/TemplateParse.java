@@ -11,14 +11,6 @@ import java.util.regex.Pattern;
 
 public class TemplateParse {
 
-    private List<String> parse(String template) {
-        List<String> segments = new ArrayList<>();
-        int index = collectSegments(segments, template);
-        addTail(segments, template, index);
-        addEmptyStringIfTemplateWasEmpty(segments);
-        return segments;
-    }
-
     public List<Segment> parseSegments(String template) {
         List<Segment> segments = new ArrayList<>();
         List<String> strings = parse(template);
@@ -31,6 +23,14 @@ public class TemplateParse {
                 segments.add(new PlainText(s));
             }
         }
+        return segments;
+    }
+
+    private List<String> parse(String template) {
+        List<String> segments = new ArrayList<>();
+        int index = collectSegments(segments, template);
+        addTail(segments, template, index);
+        addEmptyStringIfTemplateWasEmpty(segments);
         return segments;
     }
 
