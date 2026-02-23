@@ -38,7 +38,7 @@ class TestTemplateParse extends Specification {
 
         where:
         scenario                    | template             | expectSegments
-        'empty template'            | ''                   | Collections.emptyList()
+        'empty template'            | ''                   | List.of(new PlainText(''))
         'plain text only'           | 'plain text only'    | List.of(new PlainText('plain text only'))
         'parsing multiple variable' | '${a} : ${b} : ${c}' | List.of(new Variable('a'), new PlainText(' : '), new Variable('b'), new PlainText(' : '), new Variable('c'))
     }
