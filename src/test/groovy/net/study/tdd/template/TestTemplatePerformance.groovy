@@ -1,6 +1,6 @@
-package net.study.tdd
+package net.study.tdd.template
 
-import net.study.tdd.template.Template
+
 import spock.lang.Specification
 
 class TestTemplatePerformance extends Specification {
