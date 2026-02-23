@@ -1,5 +1,10 @@
 package net.study.tdd.template.parse;
 
+import net.study.tdd.template.Template;
+import net.study.tdd.template.segment.PlainText;
+import net.study.tdd.template.segment.Segment;
+import net.study.tdd.template.segment.Variable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,6 +17,21 @@ public class TemplateParse {
         int index = collectSegments(segments, template);
         addTail(segments, template, index);
         addEmptyStringIfTemplateWasEmpty(segments);
+        return segments;
+    }
+
+    public List<Segment> parseSegments(String template) {
+        List<Segment> segments = new ArrayList<>();
+        List<String> strings = parse(template);
+
+        for (String s : strings) {
+            if (Template.isVariable(s)) {
+                String name = s.substring(2, s.length() - 1);
+                segments.add(new Variable(name));
+            } else {
+                segments.add(new PlainText(s));
+            }
+        }
         return segments;
     }
 
