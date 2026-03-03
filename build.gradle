@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation "org.apache.groovy:groovy"
     testImplementation 'org.spockframework:spock-core:2.4-M5-groovy-4.0'
