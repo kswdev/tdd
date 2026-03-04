@@ -1,5 +1,6 @@
 package net.study.tdd.auth.web
 
+import net.study.tdd.auth.web.constant.Authentication
 import net.study.tdd.auth.service.AuthenticationService
 import net.study.tdd.auth.service.FakeAuthenticationService
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -34,8 +35,8 @@ class LoginServletSpec extends Specification {
 
     def "패스워드가 틀리면 에러 페이지로 리다이렉트한다."() {
         given:
-        request.addParameter("j_username", VALID_USERNAME)
-        request.addParameter("j_password", "wrongpassword")
+        request.addParameter(Authentication.USERNAME, VALID_USERNAME)
+        request.addParameter(Authentication.PASSWORD, "wrongpassword")
 
         when:
         servlet.service(request, response)
@@ -46,14 +47,14 @@ class LoginServletSpec extends Specification {
 
     def "패스워드가 맞으면 프론트 페이지로 이동하고 사용자 이름을 저장한다."() {
         given:
-        request.addParameter("j_username", VALID_USERNAME)
-        request.addParameter("j_password", VALID_PASSWORD)
+        request.addParameter(Authentication.USERNAME, VALID_USERNAME)
+        request.addParameter(Authentication.PASSWORD, VALID_PASSWORD)
 
         when:
         servlet.service(request, response)
 
         then:
         response.redirectedUrl == "/frontpage"
-        request.getSession().getAttribute("j_username") == "validuser"
+        request.getSession().getAttribute(Authentication.USERNAME) == VALID_USERNAME
     }
 }

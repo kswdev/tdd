@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import net.study.tdd.auth.web.constant.Authentication;
 import net.study.tdd.auth.service.AuthenticationService;
 
 import java.io.IOException;
@@ -16,12 +17,12 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String user = req.getParameter("j_username");
-        String pass = req.getParameter("j_password");
+        String user = req.getParameter(Authentication.USERNAME);
+        String pass = req.getParameter(Authentication.PASSWORD);
 
         if (getAuthenticationService().isValidLogin(user, pass)) {
-            req.getSession().setAttribute("j_username", user);
-            req.getSession().setAttribute("j_password", pass);
+            req.getSession().setAttribute(Authentication.USERNAME, user);
+            req.getSession().setAttribute(Authentication.PASSWORD, pass);
             resp.sendRedirect("/frontpage");
         } else
             resp.sendRedirect("/invalidlogin");
