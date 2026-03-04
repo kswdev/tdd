@@ -1,4 +1,4 @@
-package net.study.tdd.auth.web
+package net.study.tdd.auth.web.servlet
 
 import net.study.tdd.auth.web.constant.Authentication
 import net.study.tdd.auth.service.AuthenticationService

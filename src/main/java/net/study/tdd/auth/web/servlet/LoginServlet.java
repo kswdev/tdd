@@ -1,4 +1,4 @@
-package net.study.tdd.auth.web;
+package net.study.tdd.auth.web.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
