@@ -16,15 +16,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String user = req.getParameter(Authentication.USERNAME);
-        String pass = req.getParameter(Authentication.PASSWORD);
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String user = request.getParameter(Authentication.USERNAME);
+        String pass = request.getParameter(Authentication.PASSWORD);
 
         if (getAuthenticationService().isValidLogin(user, pass)) {
-            req.getSession().setAttribute(Authentication.USERNAME, user);
-            req.getSession().setAttribute(Authentication.PASSWORD, pass);
-            resp.sendRedirect("/frontpage");
+            request.getSession().setAttribute(Authentication.USERNAME, user);
+            response.sendRedirect("/frontpage");
         } else
-            resp.sendRedirect("/invalidlogin");
+            response.sendRedirect("/invalidlogin");
     }
 }
