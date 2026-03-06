@@ -23,7 +23,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    testImplementation "org.apache.groovy:groovy"
+    testImplementation 'org.apache.groovy:groovy'
+    testImplementation 'net.sf.jsptest:jsptest-framework:0.19'
     testImplementation 'org.spockframework:spock-core:2.4-M5-groovy-4.0'
     testImplementation 'org.spockframework:spock-spring:2.4-M5-groovy-4.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
