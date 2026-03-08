@@ -1,6 +1,7 @@
 package net.study.tdd.person.infrastructure.jdbc
 
 import net.study.tdd.person.domain.Person
+import net.study.tdd.person.infrastructure.PersonSql
 import spock.lang.Specification
 
 import javax.sql.DataSource
@@ -30,7 +31,7 @@ class JdbcPersonDaoTest extends Specification {
 
         then:
         1 * dataSource.getConnection() >> connection
-        1 * connection.prepareStatement(JdbcPersonDao.FIND_BY_LASTNAME_SQL) >> psmt
+        1 * connection.prepareStatement(PersonSql.FIND_BY_LASTNAME_SQL ) >> psmt
         1 * psmt.setString(1, "Smith")
         1 * psmt.executeQuery() >> resultSet
 
