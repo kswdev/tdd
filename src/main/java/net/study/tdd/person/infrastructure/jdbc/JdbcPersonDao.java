@@ -2,6 +2,7 @@ package net.study.tdd.person.infrastructure.jdbc;
 
 import net.study.tdd.person.dao.PersonDao;
 import net.study.tdd.person.domain.Person;
+import net.study.tdd.person.infrastructure.PersonSql;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,7 +15,6 @@ import java.util.List;
 public class JdbcPersonDao implements PersonDao {
 
     private DataSource datasource;
-    protected final static String FIND_BY_LASTNAME_SQL = "SELECT * FROM people WHERE last_name = ?";
 
     @Override
     public Person find(Long id) {
@@ -45,7 +45,7 @@ public class JdbcPersonDao implements PersonDao {
     public List<Person> findByLastname(String lastname) {
         try {
             Connection conn = datasource.getConnection();
-            PreparedStatement psmt = conn.prepareStatement(FIND_BY_LASTNAME_SQL);
+            PreparedStatement psmt = conn.prepareStatement(PersonSql.FIND_BY_LASTNAME_SQL);
             psmt.setString(1, lastname);
             ResultSet rset = psmt.executeQuery();
             List<Person> people = new ArrayList<>();
