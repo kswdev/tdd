@@ -1,6 +1,7 @@
 package net.study.tdd.person.infrastructure.hibernate;
 
 import net.study.tdd.person.domain.Person;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -17,9 +18,13 @@ public class HibernatePersonDao {
     }
 
     public List<Person> findByLastname(String lastname) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery(FIND_BY_LASTNAME);
-        query.setParameter("lastname", lastname);
-        return query.list();
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            Query query = session.createQuery(FIND_BY_LASTNAME);
+            query.setParameter("lastname", lastname);
+            return query.list();
+        } catch (HibernateException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
