@@ -29,17 +29,17 @@ class HibernatePersonDaoIntegrationSpec extends Specification {
     }
 
     def createConfiguration() {
-        Configuration cfg = loadProductionConfiguration();
-        loadTestConfigInto(cfg, "/hibernate.test.properties");
-        return cfg;
+        Configuration cfg = loadProductionConfiguration()
+        loadTestConfigInto(cfg, "/hibernate.test.properties")
+        return cfg
     }
 
     def loadProductionConfiguration() {
-        return new Configuration().configure()
+        return new Configuration()
     }
 
     def loadTestConfigInto(Configuration cfg, String path) {
-        Properties properties = loadPropertiesFrom(path);
+        Properties properties = loadPropertiesFrom(path)
         Enumeration keys = properties.keys()
         while (keys.hasMoreElements()) {
             String key = (String) keys.nextElement()
