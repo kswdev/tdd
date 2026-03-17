@@ -27,4 +27,9 @@ public class HibernatePersonDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void save(Person person) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(person);
+    }
 }
