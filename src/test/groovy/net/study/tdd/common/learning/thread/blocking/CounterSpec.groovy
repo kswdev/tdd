@@ -1,4 +1,4 @@
-package net.study.tdd.common.learning.blocking
+package net.study.tdd.common.learning.thread.blocking
 
 import net.study.tdd.common.learning.thread.SynchedThread
 import spock.lang.Specification
