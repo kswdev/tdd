@@ -1,5 +1,7 @@
-package net.study.tdd.common.time
+package net.study.tdd.common.learning.time
 
+import net.study.tdd.common.time.SystemTime
+import net.study.tdd.common.time.TimeSource
 import spock.lang.Specification
 
 class SystemTimeSpec extends Specification {
